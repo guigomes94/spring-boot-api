@@ -61,11 +61,11 @@ public class ClienteController {
 	
 	@GetMapping("/{id}/telefones")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CLIENTE')")
-	private List<TelefoneCliente> buscarTelefones(@PathVariable Long id) {
+	public List<TelefoneCliente> buscarTelefones(@PathVariable Long id) {
+		List<TelefoneCliente> resultado = new ArrayList<>();
 		Optional<Cliente> buscarCliente = clientes.findById(id);
 		if (buscarCliente.isPresent()) {
 			Cliente cliente = buscarCliente.get();
-			List<TelefoneCliente> resultado = new ArrayList<>();
 			List<TelefoneCliente> lista = telefones.findAll();
 			for (TelefoneCliente fone : lista) {
 				if (fone.getCliente().equals(cliente)) {
@@ -80,11 +80,11 @@ public class ClienteController {
 	
 	@GetMapping("/{id}/emails")
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CLIENTE')")
-	private List<EmailCliente> buscarEmails(@PathVariable Long id) {
+	public List<EmailCliente> buscarEmails(@PathVariable Long id) {
+		List<EmailCliente> resultado = new ArrayList<>();
 		Optional<Cliente> buscarCliente = clientes.findById(id);
 		if (buscarCliente.isPresent()) {
 			Cliente cliente = buscarCliente.get();
-			List<EmailCliente> resultado = new ArrayList<>();
 			List<EmailCliente> lista = emails.findAll();
 			for (EmailCliente email : lista) {
 				if (email.getCliente().equals(cliente)) {

@@ -3,6 +3,7 @@ CREATE TABLE cliente (
 	nome varchar(100) not null,
 	cpf varchar(15) not null,
 	idendereco int not null,
+	UNIQUE(cpf),
 	CONSTRAINT PK_cliente PRIMARY KEY(id),
 	CONSTRAINT FK_cliente_end FOREIGN KEY(idendereco) references endereco
 );
